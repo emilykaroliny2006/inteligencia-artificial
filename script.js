@@ -83,4 +83,52 @@ function mostraPergunta() {
         return;
 }
 perguntaAtual = perguntas[atual];
-caixaPerguntas.textContent = 
+caixaPerguntas.textContent = perguntaAtual.enunciado;
+caixaAlternativas.textContent = "";
+mostraAlternativas();
+}
+
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas) {
+        const botaoAlternativas.textContent = document.createElement("button");
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
+        botaoAlternativas.appendChild(botaoAlternativas);
+    }
+}
+
+function respostaSelecionada(opcaoSelecionada) {
+    const afirmacoes = opcaoSelecionada.afirmacao;
+    historiaFinal += afirmacoes + " ";
+    atual++;
+    mostraPergunta();
+}
+
+function mostraResultado() {
+    caixaPerguntas.textContent = "Em 2049...";
+    textoResultado.textContent = historiaFinal;
+    caixaAlternativas.textContent ="",
+}
+
+mostraPergunta();
+const horas = document.getElementById('horas');
+const minutos = document.getElementById('minutos');
+const segundos = document.getElementById('segundos');
+
+const relogio = setInterval(function time() {
+    let dateToday = new Date();
+    let hr = dateToday.getHours();
+    let min = dateToday.getMinutes();
+    let s = dateToday.getSeconds();
+
+    if (hr < 10) hr = '0' + hr;
+
+    if (min < 10) min = '0' + min;
+
+    if (s <  10) s = '0' + s;
+
+    horas.textContent = hr;
+    minutos.textContent = min;
+    segundos.textContent = s;
+    
+})
